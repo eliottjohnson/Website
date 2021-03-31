@@ -44,7 +44,7 @@ nav ul li {
     list-style-type: none;
     display: inline;
     float: left;
-    width: calc(100%/3);
+    width: calc(100%/4);
 
 }
 nav ul li a {
@@ -57,7 +57,37 @@ nav ul li a:hover {
     text-decoration: none;
     transition: all 0.5s ease-out;
 }
+.dropbtn {
+  display: inline-block;
+  color: #d7d7d6;
+  text-align: center;
+  text-decoration: none;
+}
+.dropbtn:hover {
+	color: #ffffff;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 99;
+  overflow:auto
+}
 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 page-container {
    min-height:100vh;
