@@ -2,12 +2,18 @@
 <html>
 	
 <head>
-<title>Eliott Johnson's Website - CV</title>
+<title>Eliott Johnson's Website - Home</title>
 <link type="text/css" rel="stylesheet" href="styles.css"/>
 <link rel="icon" type="image/png" href="/IconEJ.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="utf-8"/>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style>
+.electric { color: #ff0000; }
+.magnetic { color: #0000ff; }
+canvas { border: 1px solid black; margin: 20px auto 20px; display: block; }
+</style>
+<script src="electromagneticwave.js"></script>
 </head>
 
 <header>
@@ -24,16 +30,16 @@
     <!--end of Navigation bar-->
 </header>
 
+<body>	
+	<main class="center">
+		<p>Script testing</p>
+		<canvas id="cv" width=600 height=400>This browser doesn't support HTML5 canvas!</canvas>
+		<script>endPage("electromagneticwave",20,9,1999,6,8,2014);</script>
+		<p>https://www.walter-fendt.de/html5/phen/electromagneticwave_en.htm</p>
 
-<body>
-        <h1 align="center">Curriculum vitae</h1>
-            
-        <div align="center">
-        <iframe align="center" src="https://drive.google.com/file/d/1--CaC84anuprDfj1Kv6LWbESsoouh8PL/preview?usp=embed_googleplus" style="border: 0; top: 0; left: 0;" width="50%" height="1200px" allowfullscreen></iframe>
-        </div>
+	</main>
 
-
-<footer class="right">
+	<footer id="indexFooter" class="right">
 		<p>Eliott Johnson</p>
 		<p>Geneva Switzerland</p>
 	</footer>

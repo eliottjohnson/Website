@@ -7,34 +7,33 @@
 	<link rel="icon" type="image/png" href="/IconEJ.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<meta charset="utf-8"/>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <header>
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li><a href="cv.html">CV</a></li>
-            <li><a href="camera.html">Camera</a></li>
-            <li class="dropdown">
-				<a href="javascript:void(0)" class="dropbtn"><i class="fa fa-bars"></i></a>
-				<div class="dropdown-content">
-				  <a href="page1.html">Parallax Page</a>
-				  <a href="EMwave.html">Electromagnetic Wave</a>
-				  <a href="#">WIP 3</a>
-				</div>
-			</li>
-        </ul>
-    </nav>
+	<!--Navigation bar-->
+	<div id="nav-placeholder">
+
+	</div>
+
+	<script>
+	$(function(){
+	  $("#nav-placeholder").load("nav.html");
+	});
+	</script>
+	<!--end of Navigation bar-->
 </header>
 
 <body>
 	<main class="center">
-		<h1>Eliott Johnson's</h1>
-		<h1>Webpage</h1>
-		
+		<h3>Eliott Johnson's Website</h3>
+				
 		<p><a href="https://www.eliottjohnson.ch/cv.html">
-		<img src="plane.jpg" id="plane" alt="Cap 10">
+		<img src="plane.jpg" id="plane" alt="Cap 10" width=60% height=60%>
 		</a></p>
+		
+		<h4>This website is hosted on a Rasberry Pi 3 B+ with a camera pointed out the window. The code is hand written in HTML and CSS. The domain has been sold by Swisscom.</h4>
+		<img src="rPi.JPEG" id="rPi" alt="Raspberry Pi">
 	</main>
 
 	<footer id="indexFooter" class="right">
