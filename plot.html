@@ -45,16 +45,16 @@ for (i = 0; i < n; i=i+10) {
   x[i] = i;
   y[i] = 1800*i-2*i*i;
   
-  name = 'frame' + i;
+  name = i;
 	frames.push({
 		name: name,
-		data: [{x: x[i], y: y[i]}]
+		data: [{x: [x[i]], y: [y[i]]}]
 	})
 	
 	steps.push({
-	label: 'red',
+	label: i,
        method: 'animate',
-       args: [['red'], {
+       args: [[i], {
          mode: 'immediate',
          frame: {redraw: false, duration: 500},
          transition: {duration: 500}
@@ -65,8 +65,8 @@ for (i = 0; i < n; i=i+10) {
 
 Plotly.plot('graph', {
  data: [{
-   x: x,
-   y: y,
+   x: [0],
+   y: [0],
    mode: 'markers',
   type: 'scatter'
  }],
@@ -89,31 +89,7 @@ Plotly.plot('graph', {
      },
      transition: {duration: 500},
      // By default, animate commands are bound to the most recently animated frame:
-     steps: [{
-       label: 'red',
-       method: 'animate',
-       args: [['red'], {
-         mode: 'immediate',
-         frame: {redraw: false, duration: 500},
-         transition: {duration: 500}
-       }]
-     }, {
-       label: 'green',
-       method: 'animate',
-       args: [['green'], {
-         mode: 'immediate',
-         frame: {redraw: false, duration: 500},
-         transition: {duration: 500}
-       }]
-     }, {
-       label: 'blue',
-       method: 'animate',
-       args: [['blue'], {
-         mode: 'immediate',
-         frame: {redraw: false, duration: 500},
-         transition: {duration: 500}
-       }]
-     }]
+     steps: steps
    }],
    updatemenus: [{
      type: 'buttons',
@@ -145,9 +121,7 @@ Plotly.plot('graph', {
  // The slider itself does not contain any notion of timing, so animating a slider
  // must be accomplished through a sequence of frames. Here we'll change the color
  // and the data of a single trace:
- frames: [{name: 'red',data: [{x:[0],y:[0]}]},
-	{name: 'green',data: [{x:[450],y: [405000]}]},
-	{name: 'blue',data: [{x:[600],y: [360000]}]}]
+ frames: frames
 	});
 </script>
 
