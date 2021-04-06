@@ -1,2 +1,2 @@
 # Website
-My personal website to learn HTML CSS and Javascript
+My personal website to learn HTML, CSS and Javascript
