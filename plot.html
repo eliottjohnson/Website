@@ -61,7 +61,10 @@ for (i = 0; i < n; i=i+10) {
        }]
    })
 }
-
+frames.push({
+		name: 'parabola',
+		data: [{x: x, y: y}]
+	})
 
 Plotly.plot('graph', {
  data: [{
@@ -81,13 +84,13 @@ Plotly.plot('graph', {
      len: 0.95,
      currentvalue: {
        xanchor: 'right',
-       prefix: 'color: ',
+       prefix: 'Largeur: ',
        font: {
          color: '#888',
          size: 20
        }
      },
-     transition: {duration: 500},
+     transition: {duration: 10},
      // By default, animate commands are bound to the most recently animated frame:
      steps: steps
    }],
@@ -100,22 +103,11 @@ Plotly.plot('graph', {
      yanchor: 'top',
      direction: 'left',
      pad: {t: 60, r: 20},
-     buttons: [{
-       label: 'Play',
-       method: 'animate',
-       args: [null, {
-         fromcurrent: true,
-         frame: {redraw: false, duration: 1000},
-         transition: {duration: 500}
-       }]
-     }, {
-       label: 'Pause',
-       method: 'animate',
-       args: [[null], {
-         mode: 'immediate',
-         frame: {redraw: false, duration: 0}
-       }]
-     }]
+     buttons: [
+       {label: 'Play',method: 'animate',args: [null,{fromcurrent: true,frame: {redraw: false, duration: 100},transition: {duration: 10}}]},
+       {label: 'Pause',method: 'animate',args: [[null], {mode: 'immediate',frame: {redraw: false, duration: 0}}]},
+       {label: 'Show Curve',method: 'animate',args: [['parabola'],{mode: 'immediate',frame: {redraw: false, duration: 0}}]}
+     ]
    }]
  },
  // The slider itself does not contain any notion of timing, so animating a slider
