@@ -45,10 +45,11 @@ for (i = 0; i < n; i=i+10) {
   x[i] = i;
   y[i] = 1800*i-2*i*i;
   
+
   name = i;
 	frames.push({
 		name: name,
-		data: [{x: [x[i]], y: [y[i]]}]
+		data: [{x: [x[i]], y: [y[i]]},{x:[-(1800-2*i)/2,-(1800-2*i)/2,(1800-2*i)/2,(1800-2*i)/2],y:[0,i,i,0]}]
 	})
 	
 	steps.push({
@@ -66,15 +67,28 @@ frames.push({
 		data: [{x: x, y: y}]
 	})
 
+//Drawing of field
+
+var trace2= {
+
+	x:[0],
+	y:[0],
+	xaxis: 'x2',
+	yaxis: 'y2',
+	name: 'Enclos',
+	mode: 'lines',
+	line: {
+		color: 'rgb(187,0,0)',
+		width: 3
+	}
+};
+
+
 Plotly.plot('graph', {
- data: [{
-   x: [0],
-   y: [0],
-   mode: 'markers',
-  type: 'scatter'
- }],
+ data: [{x:[0],y:[0],mode: 'markers',type: 'scatter',marker:{size:12},name: 'Surface'},trace2],
  layout: {
-	
+	yaxis2:{domain: [0.7,1],anchor: 'x2', range: [0,900], title:'Largeur de la cloture'},
+	xaxis2:{domain:[0.7,1], anchor: 'y2',range: [-1000,1000],title: 'Longueur cloture'},
 	xaxis: {range: [0, 900],title:'Largeur de la cloture'},
 	yaxis: {range: [0, 500000], title:' Surface de l enclos'},
 	title:'Problème d optimisation pour: Surface = 1800*h-2*h^2',
