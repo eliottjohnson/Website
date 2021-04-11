@@ -2,7 +2,7 @@
 <html>
 	
 <head>
-<title>Eliott Johnson's Website - Plot</title>
+<title>Eliott Johnson's Website - Clôture</title>
 <link type="text/css" rel="stylesheet" href="styles.css"/>
 <link rel="icon" type="image/png" href="/IconEJ.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,13 +27,19 @@
 </header>
 
 
-<body>
-	<p>
-    Here's a simple Plotly plot - 
-    <a href="https://bit.ly/1Or9igj">plotly.js documentation</a>
-	</p>
-	
+<body>	
+	<h1 style="padding-left: 2%;"> Exercice de math: Optimisation d'une clôture  </h1>
+	<h5> Un fermier possède 1800 m de clôture.
+	Il veut clôturer un champ rectangulaire adjacent à la rivière qui passe sur sa terre.
+ En ne mettant pas de clôture le long de la rivière, quelles doivent êtres les dimensions du champ pour que la surface soit maximale ?
+</h5>
+
+
 <div id="graph" style="width:90%;height:80%;'position':'fixed';z-index:0;display:block; margin-left: auto; margin-right: auto;"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<div id="graph_derivative" style="width:90%;height:80%;'position':'fixed';z-index:0;display:block; margin-left: auto; margin-right: auto;"></div>
+
+<p>Plot made with Plotly javascript - <a href="https://bit.ly/1Or9igj">plotly.js documentation</a></p>
 
 <script>
 
@@ -44,9 +50,7 @@ var steps = [];
 for (i = 0; i < n; i=i+10) {
   x[i] = i;
   y[i] = 1800*i-2*i*i;
-  
-
-  name = i;
+    name = i;
 	frames.push({
 		name: name,
 		data: [{x: [x[i]], y: [y[i]]},{x:[-(1800-2*i)/2,-(1800-2*i)/2,(1800-2*i)/2,(1800-2*i)/2],y:[0,i,i,0]}]
@@ -67,8 +71,7 @@ frames.push({
 		data: [{x: x, y: y}]
 	})
 
-//Drawing of field
-
+//Drawing of enclos
 var trace2= {
 
 	x:[0],
@@ -130,6 +133,118 @@ Plotly.plot('graph', {
  frames: frames
 	});
 </script>
+
+
+
+<script>
+var n = 900;
+var x = [], y = [];
+var frames = [];
+var steps = [];
+
+
+function linspace(a,b,n) {
+	return Plotly.d3.range(n).map(function(i){return a+i*(b-a)/(n-1);});
+}
+
+var xValues = linspace(0,900,500);
+var yValues = [];
+
+for (var i=0; i < xValues.length; i++){
+	yValues.push(1800*xValues[i]-2*xValues[i]*xValues[i]);
+}
+
+//Calculate the derivative
+for (i = 0; i < n; i=i+10) {
+  x = [];
+  y = [];
+  var lengthDeriv = 100;
+  var k=i-lengthDeriv;
+  var slope=0;
+	for (j=0; j<lengthDeriv*2; j=j+1){
+		x[j] = k+j;
+		slope = 1800-4*i
+		y[j]=slope*j + (1800*(i)-2*(i)*(i))-(slope*lengthDeriv);
+	}
+
+    name = i;
+	frames.push({
+		name: name,
+		data: [{x: xValues, y: yValues},{x: x, y: y}]
+	})
+	
+	steps.push({
+	label: i,
+       method: 'animate',
+       args: [[i], {
+         mode: 'immediate',
+         frame: {redraw: false, duration: 500},
+         transition: {duration: 500}
+       }]
+   })
+}
+frames.push({
+		name: 'parabola',
+		data: [{x: x, y: y}]
+	})
+
+//Drawing of derivative
+var trace2= {
+	x:[0],
+	y:[0],
+	mode: 'markers',
+	type: 'scatter',
+	name: 'Dérivée',
+	marker:{size:5, color: 'rgb(255,0,0)'}
+};
+
+
+Plotly.plot('graph_derivative', {
+ data: [{x:xValues,y:yValues,mode: 'markers',type: 'scatter',marker:{size:5},name: 'Surface'},trace2],
+ layout: {
+	xaxis: {range: [0, 900],title:'Largeur de la cloture'},
+	yaxis: {range: [0, 500000], title:' Surface de l enclos'},
+	title:'Dérivée de la fonction: Surface = 1800*h-2*h^2',
+   sliders: [{
+     pad: {t: 30},
+     x: 0.05,
+     len: 0.95,
+     currentvalue: {
+       xanchor: 'right',
+       prefix: 'Largeur: ',
+       font: {
+         color: '#888',
+         size: 20
+       }
+     },
+     transition: {duration: 10},
+     // By default, animate commands are bound to the most recently animated frame:
+     steps: steps
+   }],
+   updatemenus: [{
+     type: 'buttons',
+     showactive: false,
+     x: 0.05,
+     y: 0,
+     xanchor: 'right',
+     yanchor: 'top',
+     direction: 'left',
+     pad: {t: 60, r: 20},
+     buttons: [
+       {label: 'Play',method: 'animate',args: [null,{fromcurrent: true,frame: {redraw: false, duration: 100},transition: {duration: 10}}]},
+       {label: 'Pause',method: 'animate',args: [[null], {mode: 'immediate',frame: {redraw: false, duration: 0}}]}
+     ]
+   }]
+ },
+ // The slider itself does not contain any notion of timing, so animating a slider
+ // must be accomplished through a sequence of frames. Here we'll change the color
+ // and the data of a single trace:
+ frames: frames
+	});
+</script>
+
+
+
 
 <footer class="right">
 		<p>Eliott Johnson</p>
