@@ -26,7 +26,6 @@
     <!--end of Navigation bar-->
 </header>
 
-
 <body>	
 	<h1 style="padding-left: 2%;"> Exercice de math: Optimisation d'une clôture  </h1>
 	<h5> Un fermier possède 1800 m de clôture.
@@ -34,15 +33,16 @@
  En ne mettant pas de clôture le long de la rivière, quelles doivent êtres les dimensions du champ pour que la surface soit maximale ?
 </h5>
 
+<iframe style="margin-left:auto; margin-right: auto" width="560" height="315" src="https://www.youtube.com/embed/Q7Vx5tjhKr0" title="Youtube video player" frameborder="0" 
+
+	allow="accelerometer; autoplay; clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe> 
 
 <div id="graph" style="width:90%;height:80%;'position':'fixed';z-index:0;display:block; margin-left: auto; margin-right: auto;"><!-- Plotly chart will be drawn inside this DIV --></div>
-
 <div id="graph_derivative" style="width:90%;height:80%;'position':'fixed';z-index:0;display:block; margin-left: auto; margin-right: auto;"></div>
 
-<p>Plot made with Plotly javascript - <a href="https://bit.ly/1Or9igj">plotly.js documentation</a></p>
+<p>Plots made with Plotly javascript - <a href="https://bit.ly/1Or9igj">plotly.js documentation</a></p>
 
 <script>
-
 var n = 900;
 var x = [], y = [];
 var frames = [];
@@ -90,11 +90,11 @@ var trace2= {
 Plotly.plot('graph', {
  data: [{x:[0],y:[0],mode: 'markers',type: 'scatter',marker:{size:12},name: 'Surface'},trace2],
  layout: {
-	yaxis2:{domain: [0.7,1],anchor: 'x2', range: [0,900], title:'Largeur de la cloture'},
-	xaxis2:{domain:[0.7,1], anchor: 'y2',range: [-1000,1000],title: 'Longueur cloture'},
+	yaxis2:{domain: [0.7,1],anchor: 'x2', range: [0,900], title:'Largeur de la cloture (x)'},
+	xaxis2:{domain:[0.7,1], anchor: 'y2',range: [-1000,1000],title: 'Longueur cloture (y)'},
 	xaxis: {range: [0, 900],title:'Largeur de la cloture'},
 	yaxis: {range: [0, 500000], title:' Surface de l enclos'},
-	title:'Problème d optimisation pour: Surface = 1800*h-2*h^2',
+	title:'Problème d optimisation pour: Surface = 1800*x-2*x^2',
    sliders: [{
      pad: {t: 30},
      x: 0.05,
@@ -204,7 +204,7 @@ Plotly.plot('graph_derivative', {
  layout: {
 	xaxis: {range: [0, 900],title:'Largeur de la cloture'},
 	yaxis: {range: [0, 500000], title:' Surface de l enclos'},
-	title:'Dérivée de la fonction: Surface = 1800*h-2*h^2',
+	title:'Dérivée de la fonction: 1800-4x',
    sliders: [{
      pad: {t: 30},
      x: 0.05,
